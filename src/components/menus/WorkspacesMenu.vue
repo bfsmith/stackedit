@@ -11,14 +11,6 @@
       <icon-provider slot="icon" provider-id="googleDriveWorkspace"></icon-provider>
       <span>Add Google Drive workspace</span>
     </menu-entry>
-    <menu-entry @click.native="addCouchdbWorkspace">
-      <icon-provider slot="icon" provider-id="couchdbWorkspace"></icon-provider>
-      <span>Add CouchDB workspace</span>
-    </menu-entry>
-    <menu-entry @click.native="manageWorkspaces">
-      <icon-database slot="icon"></icon-database>
-      <span>Manage workspaces</span>
-    </menu-entry>
   </div>
 </template>
 
@@ -46,12 +38,6 @@ export default {
           type: 'googleDriveWorkspace',
           token,
         }))
-        .catch(() => {}); // Cancel
-    },
-    addCouchdbWorkspace() {
-      return this.$store.dispatch('modal/open', {
-        type: 'couchdbWorkspace',
-      })
         .catch(() => {}); // Cancel
     },
     manageWorkspaces() {

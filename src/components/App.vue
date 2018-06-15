@@ -16,8 +16,8 @@ import Notification from './Notification';
 import ContextMenu from './ContextMenu';
 import SplashScreen from './SplashScreen';
 import syncSvc from '../services/syncSvc';
-import networkSvc from '../services/networkSvc';
-import sponsorSvc from '../services/sponsorSvc';
+// import networkSvc from '../services/networkSvc';
+// import sponsorSvc from '../services/sponsorSvc';
 import tempFileSvc from '../services/tempFileSvc';
 import timeSvc from '../services/timeSvc';
 import store from '../store';
@@ -92,8 +92,8 @@ export default {
   created() {
     syncSvc.init()
       .then(() => {
-        networkSvc.init();
-        sponsorSvc.init();
+        // networkSvc.init();
+        // sponsorSvc.init();
         this.ready = true;
         tempFileSvc.setReady();
       })

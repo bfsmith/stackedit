@@ -44,13 +44,6 @@ import GithubSaveModal from './modals/providers/GithubSaveModal';
 import GithubPublishModal from './modals/providers/GithubPublishModal';
 import GistSyncModal from './modals/providers/GistSyncModal';
 import GistPublishModal from './modals/providers/GistPublishModal';
-import WordpressPublishModal from './modals/providers/WordpressPublishModal';
-import BloggerPublishModal from './modals/providers/BloggerPublishModal';
-import BloggerPagePublishModal from './modals/providers/BloggerPagePublishModal';
-import ZendeskAccountModal from './modals/providers/ZendeskAccountModal';
-import ZendeskPublishModal from './modals/providers/ZendeskPublishModal';
-import CouchdbWorkspaceModal from './modals/providers/CouchdbWorkspaceModal';
-import CouchdbCredentialsModal from './modals/providers/CouchdbCredentialsModal';
 
 const getTabbables = container => container.querySelectorAll('a[href], button, .textfield')
   // Filter enabled and visible element
@@ -87,13 +80,6 @@ export default {
     GithubPublishModal,
     GistSyncModal,
     GistPublishModal,
-    WordpressPublishModal,
-    BloggerPublishModal,
-    BloggerPagePublishModal,
-    ZendeskAccountModal,
-    ZendeskPublishModal,
-    CouchdbWorkspaceModal,
-    CouchdbCredentialsModal,
   },
   computed: {
     ...mapGetters('modal', [

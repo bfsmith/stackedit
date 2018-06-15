@@ -25,7 +25,8 @@
         <a class="navigation-bar__button navigation-bar__button--location button" :class="{'navigation-bar__button--blink': location.id === currentLocation.id}" v-for="location in syncLocations" :key="location.id" :href="location.url" target="_blank" v-title="'Synchronized location'"><icon-provider :provider-id="location.providerId"></icon-provider></a>
         <button class="navigation-bar__button navigation-bar__button--sync button" :disabled="!isSyncPossible || isSyncRequested || offline" @click="requestSync" v-title="'Synchronize now'"><icon-sync></icon-sync></button>
         <a class="navigation-bar__button navigation-bar__button--location button" :class="{'navigation-bar__button--blink': location.id === currentLocation.id}" v-for="location in publishLocations" :key="location.id" :href="location.url" target="_blank" v-title="'Publish location'"><icon-provider :provider-id="location.providerId"></icon-provider></a>
-        <button class="navigation-bar__button navigation-bar__button--publish button" :disabled="!publishLocations.length || isPublishRequested || offline" @click="requestPublish" v-title="'Publish now'"><icon-upload></icon-upload></button>
+        <button class="navigation-bar__button navigation-bar__button--publish button" @click="toggleTheme" v-title="'Toggle Theme'"><icon-sun></icon-sun></button>
+        <!-- <button class="navigation-bar__button navigation-bar__button--publish button" :disabled="!publishLocations.length || isPublishRequested || offline" @click="requestPublish" v-title="'Publish now'"><icon-upload></icon-upload></button> -->
       </div>
       <!-- Revision -->
       <div class="flex flex--row" v-if="revisionContent">
@@ -183,6 +184,22 @@ export default {
       if (this.$store.getters['content/isCurrentEditable']) {
         editorSvc.pagedownEditor.uiManager.doClick(name);
       }
+    },
+    toggleTheme() {
+      const themeLineRegex = /^[\s]*colorTheme: (.*)$/;
+      const settings = this.$store.getters['data/settings'];
+      const newSettings = settings.split('\n').map((line) => {
+        if (themeLineRegex.test(line)) {
+          const theme = themeLineRegex.exec(line)[1];
+          const newTheme = theme === 'dark' ? 'light' : 'dark';
+          return `colorTheme: ${newTheme}`;
+        }
+        return line;
+      }).join('\n');
+      // eslint-disable-next-line
+      console.log(newSettings);
+      // this.setCustomSettings(settings === '\n' ? emptySettings : settings);
+      this.$store.dispatch('data/setSettings', newSettings);
     },
     editTitle(toggle) {
       this.titleFocus = toggle;
